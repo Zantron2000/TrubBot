@@ -1,0 +1,9 @@
+TrubBot
+
+Version 1.0: 
+
+The TrubBot should take images given to it and save them into a database. 
+Only verified users can save images to the TrubBot, but any user can retrieve images from the 
+TrubBot. Only admins and specified roles can verify users. Images are stored with a given name. 
+A user can search for desired images in the system. A verified user can delete any image in the 
+system, regardless if they added it or not.
