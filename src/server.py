@@ -12,6 +12,8 @@ Members Table - Keeps track of members in the server
 from discord import Role
 from src.database_utils import *
 
+# Database Table Functions
+
 def rebuild_images_table():
     """Rebuilds the Images table"""
 
@@ -36,6 +38,8 @@ def rebuild_roles_table():
             DELETE_IMAGES BOOLEAN DEFAULT 0
         )
     """)
+
+# Images Table API Functions
 
 def create_image(image_name: str, image_url: str):
     """Attempts to save an image into the database"""
@@ -64,6 +68,26 @@ def delete_image(image_name: str):
         return True
     except:
         return False
+
+def store_image(roles: list[Role], image_name: str, image_url: str):
+    try:
+        if has_create_image_role(roles):
+            return create_image(image_name, image_url)
+        else:
+            return False
+    except:
+        return False
+
+def remove_image(roles: list[Role], image_name: str):
+    try:
+        if has_delete_image_role(roles):
+            return delete_image(image_name)
+        else:
+            return False
+    except:
+        return False
+
+# Roles Table API Functions
 
 def register_role(role: Role, c_img = 0, d_img = 0, r_img = 0):
     """Attempts to register a role into the database"""
@@ -108,20 +132,3 @@ def has_create_image_role(roles: list[Role]):
     except:
         return False
 
-def store_image(roles: list[Role], image_name: str, image_url: str):
-    try:
-        if has_create_image_role(roles):
-            return create_image(image_name, image_url)
-        else:
-            return False
-    except:
-        return False
-
-def remove_image(roles: list[Role], image_name: str):
-    try:
-        if has_delete_image_role(roles):
-            return delete_image(image_name)
-        else:
-            return False
-    except:
-        return False
