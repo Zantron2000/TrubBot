@@ -1,3 +1,11 @@
+"""
+Basic utility functions to do CRUD operations in any given database
+using psycopg2 to open the database and yaml to obtain configuration
+data. Works with python 3.7, any version above throws conflict with
+psycopg2, further research is required to see how to update with 
+more recent versions.
+"""
+
 import psycopg2
 import yaml
 import os
